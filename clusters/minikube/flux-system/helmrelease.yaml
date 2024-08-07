@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: my-node-app
+  namespace: default
+spec:
+  releaseName: my-node-app
+  chart:
+    spec:
+      chart: my-node-helm
+      sourceRef:
+        kind: HelmRepository
+        name: my-node-helm-repo
+      version: 0.1.0
+  interval: 10m  # Add the interval field
+  values:
+    image:
+      repository: shamilrizwan/my-node-app
+      tag: latest
